@@ -53,14 +53,22 @@ app.get("/", (req, res) => {
 });
 
 // 4️⃣ DB connection
-mongoose
-  .connect(process.env.MONGODB_URI as string)
-  .then(() =>
-    console.log("MongoDB connected", mongoose?.connection?.db?.databaseName)
-  )
-  .catch((err: unknown) => console.error("MongoDB connection error:", err));
+if (!process.env.MONGODB_URI) {
+  throw new Error("Please add your Mongo URI to .env.local");
+}
 
-// 5️⃣ Start server
+mongoose
+  .connect(process.env.MONGODB_URI as string, {
+    dbName: "QuesAI",
+  })
+  .then(() => {
+    const db = mongoose?.connection?.db;
+    console.log("MongoDB connected to:", db?.databaseName);
+  })
+  .catch((err: unknown) => {
+    console.error("MongoDB connection error:", err);
+  });
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
