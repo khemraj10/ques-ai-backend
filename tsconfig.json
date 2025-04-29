@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext", // Use ES Modules
+    "moduleResolution": "node", // Ensures node-style module resolution
+    "esModuleInterop": true, // Ensures compatibility between CommonJS and ES Modules
+    "strict": true, // Optional, for strict type checking
+    "skipLibCheck": true, // Optional, skips checking of declaration files
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist", // Optional, output directory for compiled files
+    "baseUrl": ".", // Optional, base directory for relative paths
+    "paths": {
+      "*": ["node_modules/*"] // Optional, allows paths to be mapped
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
